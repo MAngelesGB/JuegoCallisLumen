@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://cfr0kuf7rd7uq"]
+
+[ext_resource type="Script" path="res://Escenas/Menu/menu_principal.gd" id="1_m8424"]
+[ext_resource type="Script" path="res://Escenas/Menu/ContenedorBotones.gd" id="2_15nfp"]
+[ext_resource type="Texture2D" uid="uid://bqbba03vdekge" path="res://Imagenes/Fondo.jpeg" id="2_liu76"]
+[ext_resource type="PackedScene" uid="uid://dta3bdsgj05b4" path="res://Escenas/Recursos/luz_menu.tscn" id="3_c8lf3"]
+[ext_resource type="FontFile" uid="uid://1dof37m5ylc6" path="res://Fuentes/Menu/Adventurer.ttf" id="4_xnf71"]
+[ext_resource type="PackedScene" uid="uid://c8tu6u1wmfqkg" path="res://Escenas/Inicio/escena_inicial.tscn" id="5_cs1xb"]
+[ext_resource type="PackedScene" uid="uid://cwlhe6ndlmpvk" path="res://Escenas/Menu/botones_menu.tscn" id="5_ijmpm"]
+[ext_resource type="PackedScene" uid="uid://dwh20itn3pq4h" path="res://Escenas/Controles/controles.tscn" id="7_07mdt"]
+[ext_resource type="AudioStream" uid="uid://b31dy8uge1g82" path="res://Ambientacion/Fantasy RPG Music Pack/mp3/Ambient 10.mp3" id="9_ulc7k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gisdu"]
+
+[node name="menu_principal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m8424")
+
+[node name="FondoMenu" type="TextureRect" parent="."]
+modulate = Color(0.513726, 0.513726, 0.513726, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_liu76")
+expand_mode = 3
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_c8lf3")]
+
+[node name="TituloJuego" type="RichTextLabel" parent="."]
+modulate = Color(0.788235, 0.788235, 0.788235, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -318.0
+offset_top = -171.0
+offset_right = 318.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.713726, 0.870588, 0.843137, 1)
+theme_override_fonts/normal_font = ExtResource("4_xnf71")
+theme_override_font_sizes/normal_font_size = 117
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gisdu")
+bbcode_enabled = true
+text = "CallisLumen"
+fit_content = true
+scroll_active = false
+
+[node name="ContenedorBotones" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -263.0
+offset_top = -365.0
+offset_right = 71.0
+offset_bottom = -216.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 14
+alignment = 1
+script = ExtResource("2_15nfp")
+escenaIniciarAventura = ExtResource("5_cs1xb")
+opciones = ExtResource("7_07mdt")
+
+[node name="InicioAventura" parent="ContenedorBotones" instance=ExtResource("5_ijmpm")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Salir")
+focus_neighbor_bottom = NodePath("../Opciones")
+text = "Iniciar aventura"
+candle_margin_from_center = 180
+
+[node name="Opciones" parent="ContenedorBotones" instance=ExtResource("5_ijmpm")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../InicioAventura")
+focus_neighbor_bottom = NodePath("../Salir")
+text = "Opciones"
+candle_margin_from_center = 180
+
+[node name="Salir" parent="ContenedorBotones" instance=ExtResource("5_ijmpm")]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Opciones")
+focus_neighbor_bottom = NodePath("../InicioAventura")
+text = "Salir"
+candle_margin_from_center = 180
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ulc7k")
+autoplay = true
+
+[connection signal="pressed" from="ContenedorBotones/InicioAventura" to="ContenedorBotones" method="_on_inicio_aventura_pressed"]
+[connection signal="pressed" from="ContenedorBotones/Opciones" to="ContenedorBotones" method="_on_opciones_pressed"]
+[connection signal="pressed" from="ContenedorBotones/Salir" to="ContenedorBotones" method="_on_salir_pressed"]

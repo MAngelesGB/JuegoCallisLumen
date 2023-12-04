@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://4hbddobo8he3"]
+
+[ext_resource type="PackedScene" uid="uid://cxnwi5bl60hb0" path="res://Escenas/SistemaGuardado/altar.tscn" id="1_kt51w"]
+
+[node name="sistema_guardado" type="Node2D"]
+
+[node name="altar" parent="." instance=ExtResource("1_kt51w")]
+position = Vector2(-52, 8)

@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0ao1si3v4ov7"]
+
+[ext_resource type="Texture2D" uid="uid://bicajur5e64ix" path="res://Recursos/candle/C300-1.png" id="1_f0oti"]
+[ext_resource type="Texture2D" uid="uid://bbllx121p7ljw" path="res://Recursos/candle/C300-2.png" id="2_fbw57"]
+[ext_resource type="Texture2D" uid="uid://cvydeia218fj4" path="res://Recursos/candle/C300-3.png" id="3_8oroa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3pdaf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f0oti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fbw57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8oroa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bqk0k"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_dxb3y"]
+offsets = PackedFloat32Array(0, 0.676692)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_61mi3"]
+gradient = SubResource("Gradient_dxb3y")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kjfpi"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_2ph5a"]
+offsets = PackedFloat32Array(0, 0.684211)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2nm6b"]
+gradient = SubResource("Gradient_2ph5a")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Candle" type="AnimatedSprite2D"]
+position = Vector2(474.125, 16.625)
+scale = Vector2(0.0698242, 0.0698242)
+sprite_frames = SubResource("SpriteFrames_3pdaf")
+autoplay = "default"
+frame_progress = 0.940062
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_bqk0k")
+position = Vector2(12.8589, -305.096)
+scale = Vector2(9.41325, 9.41325)
+texture = SubResource("GradientTexture2D_61mi3")
+
+[node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
+modulate = Color(0.277196, 0.231376, 0.0387216, 0.392157)
+material = SubResource("CanvasItemMaterial_kjfpi")
+texture = SubResource("GradientTexture2D_2nm6b")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b31dy8uge1g82"
+path="res://.godot/imported/Ambient 10.mp3-d936802f4827d14128889a29f1257c21.mp3str"
+
+[deps]
+
+source_file="res://Ambientacion/Fantasy RPG Music Pack/mp3/Ambient 10.mp3"
+dest_files=["res://.godot/imported/Ambient 10.mp3-d936802f4827d14128889a29f1257c21.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

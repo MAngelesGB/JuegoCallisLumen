@@ -1,0 +1,281 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwh20itn3pq4h"]
+
+[ext_resource type="Script" path="res://Escenas/Controles/controles.gd" id="1_3f44o"]
+[ext_resource type="Texture2D" uid="uid://d0e6sc8dhiwhy" path="res://Recursos/Controles/FondoControles.png" id="1_h7w7b"]
+[ext_resource type="Texture2D" uid="uid://cof0eeba3xik6" path="res://Recursos/SimpleKeys/Jumbo/Dark/Spritesheets/ARROWUP.png" id="2_3n5qb"]
+[ext_resource type="FontFile" uid="uid://bwcbulf4i85t" path="res://Fuentes/Juego/LastPriestess.ttf" id="2_6mh4e"]
+[ext_resource type="Texture2D" uid="uid://cpvjc3n5vnssa" path="res://Recursos/SimpleKeys/Jumbo/Dark/Spritesheets/ARROWLEFT.png" id="3_8x2w3"]
+[ext_resource type="Texture2D" uid="uid://b5uilos5chjbs" path="res://Recursos/SimpleKeys/Jumbo/Dark/Spritesheets/ARROWRIGHT.png" id="4_a7hnw"]
+[ext_resource type="Texture2D" uid="uid://cobpaokwf7jl0" path="res://Recursos/SimpleKeys/Jumbo/Dark/Spritesheets/A.png" id="6_hw41u"]
+
+[sub_resource type="Animation" id="Animation_gptlh"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+
+[sub_resource type="Animation" id="Animation_p4n7o"]
+resource_name = "izquierda"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.01, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c2fl4"]
+_data = {
+"RESET": SubResource("Animation_gptlh"),
+"izquierda": SubResource("Animation_p4n7o")
+}
+
+[node name="controles" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3f44o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.615686, 0.615686, 0.615686, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 958.0
+offset_top = 885.0
+offset_right = 705.0
+offset_bottom = 657.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(0.992577, 1.15735)
+texture = ExtResource("1_h7w7b")
+flip_v = true
+
+[node name="LblArriba" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.336
+anchor_right = 1.0
+anchor_bottom = 0.336
+offset_left = -697.0
+offset_top = -93.84
+offset_right = -584.0
+offset_bottom = -55.84
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6mh4e")
+theme_override_font_sizes/font_size = 40
+text = "Saltar
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arriba" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(335, 235.908)
+scale = Vector2(2.65789, 2.65789)
+texture = ExtResource("2_3n5qb")
+hframes = 3
+
+[node name="AnimacionArriba" type="AnimationPlayer" parent="CanvasLayer/Arriba"]
+root_node = NodePath(".")
+autoplay = "izquierda"
+libraries = {
+"": SubResource("AnimationLibrary_c2fl4")
+}
+
+[node name="LblIzq" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.336
+anchor_right = 1.0
+anchor_bottom = 0.336
+offset_left = -700.0
+offset_top = 6.15997
+offset_right = -410.0
+offset_bottom = 44.16
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6mh4e")
+theme_override_font_sizes/font_size = 40
+text = "Correr izquierda"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Izquierda" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(335.25, 339.5)
+scale = Vector2(2.65789, 2.65789)
+texture = ExtResource("3_8x2w3")
+hframes = 3
+
+[node name="AnimacionIzquierda" type="AnimationPlayer" parent="CanvasLayer/Izquierda"]
+root_node = NodePath(".")
+autoplay = "izquierda"
+libraries = {
+"": SubResource("AnimationLibrary_c2fl4")
+}
+
+[node name="LblDer" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.336
+anchor_right = 1.0
+anchor_bottom = 0.336
+offset_left = -703.0
+offset_top = 114.16
+offset_right = -449.0
+offset_bottom = 152.16
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6mh4e")
+theme_override_font_sizes/font_size = 40
+text = "Correr derecha
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblDer" type="Label" parent="CanvasLayer/LblDer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 2.771
+anchor_top = 0.5
+anchor_right = 2.771
+anchor_bottom = 0.5
+offset_left = -629.834
+offset_top = 101.0
+offset_right = -338.834
+offset_bottom = 159.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_6mh4e")
+theme_override_font_sizes/font_size = 40
+text = "Interacción Npcs
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Derecha" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(333.25, 442.5)
+scale = Vector2(2.65789, 2.65789)
+texture = ExtResource("4_a7hnw")
+hframes = 3
+
+[node name="AnimacionDerecha" type="AnimationPlayer" parent="CanvasLayer/Derecha"]
+root_node = NodePath(".")
+autoplay = "izquierda"
+libraries = {
+"": SubResource("AnimationLibrary_c2fl4")
+}
+
+[node name="Intereaccion" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(421, 580)
+scale = Vector2(2.65789, 2.65789)
+texture = ExtResource("6_hw41u")
+hframes = 3
+
+[node name="AnimacionInteraccion" type="AnimationPlayer" parent="CanvasLayer/Intereaccion"]
+root_node = NodePath(".")
+autoplay = "izquierda"
+libraries = {
+"": SubResource("AnimationLibrary_c2fl4")
+}
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.037
+anchor_bottom = 0.043
+offset_left = 303.0
+offset_top = 751.0
+offset_right = 406.485
+offset_bottom = 762.58
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.687
+anchor_bottom = 0.673
+offset_right = 0.071991
+offset_bottom = 0.0039978
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_6mh4e")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[u]Salir[/u]"
+fit_content = true
+
+[connection signal="pressed" from="CanvasLayer/TextureButton" to="." method="_on_texture_button_pressed"]
